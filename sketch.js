@@ -1,4 +1,7 @@
 let img;
+var theta = 0;
+var maxDiameter = 50;
+let myArray = [];
 
 function setup() {
   createCanvas(500, 700);
@@ -6,7 +9,22 @@ function setup() {
 }
 
 function draw() {
-  background(125);
+  background(127.5);
   image(img, 0,0);
-  circle(mouseX, mouseY, 50);
+  fill('red');
+  push();
+  blendMode(DIFFERENCE);
+  theta += .5;
+  var diam = 100 + sin(theta) * maxDiameter;
+  ellipse(mouseX, mouseY, diam, diam);
+  
+  for (let i = 0; i < myArray.length; i++){
+    let xy = myArray[i];
+    circle(xy.x, xy.y, diam)
+  }
+  pop();
+}
+
+function mouseClicked () {
+  append(myArray, createVector(mouseX, mouseY));
 }
