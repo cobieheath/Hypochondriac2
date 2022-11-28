@@ -2,6 +2,13 @@ let img;
 var theta = 0;
 var maxDiameter = 50;
 let myArray = [];
+let mySound;
+
+function preload() {
+  soundFormats('mp3');
+  mySound = loadSound('assets/Monitor+Beep')
+  mySound.loop();
+}
 
 function setup() {
   createCanvas(500, 700);
@@ -27,4 +34,5 @@ function draw() {
 
 function mouseClicked () {
   append(myArray, createVector(mouseX, mouseY));
+  mySound.play();
 }
